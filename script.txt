@@ -1,5 +1,0 @@
-0 create hub h 4
-0 create host pc
-0 connect h_1 pc_1
-0 send pc 0101010111001100
-20 disconnect pc_1
