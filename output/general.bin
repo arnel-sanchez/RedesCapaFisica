@@ -1,0 +1,10 @@
+time=0, instruction=create, device=hub, name=h, ports_number=4
+time=0, instruction=create, device=host, name=pc
+time=0, instruction=create, device=host, name=cp
+time=0, instruction=create, device=hub, name=i, ports_number=3
+time=0, instruction=connect, device_x=h, port_x=1, device_y=pc, port_y=1
+time=0, instruction=connect, device_x=i, port_x=2, device_y=cp, port_y=2
+time=0, instruction=send, host=pc, data=0101
+time=10, instruction=send, host=cp, data=0101
+time=20, instruction=connect, device_x=h, port_x=2, device_y=i, port_y=2
+time=60, instruction=disconnect, device=cp, port=1
