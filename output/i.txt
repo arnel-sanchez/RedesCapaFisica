@@ -1,0 +1,15 @@
+time=10, port=2, receive=0
+
+time=20, port=2, receive=1
+
+time=20, port=1, resend=1, transmission=collision
+
+time=30, port=2, receive=0
+time=30, port=1, resend=0, transmission=collision
+
+time=40, port=2, receive=1
+time=40, port=1, resend=1, transmission=successfully
+
+time=50, port=2, receive=null, cause=data_ended
+time=50, port=1, resend=null, cause=data_ended
+

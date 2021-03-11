@@ -1,0 +1,14 @@
+time=0, port=1, send=0, transmission=successfully
+
+time=10, port=1, send=1, transmission=successfully
+
+time=20, port=1, send=0, transmission=successfully
+
+time=30, port=1, send=1, transmission=successfully
+
+time=40, port=1, send=null, cause=data_ended
+
+time=40, port=1, receive=1
+
+time=50, port=1, receive=null, cause=data_ended
+
