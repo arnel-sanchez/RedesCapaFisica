@@ -12,6 +12,9 @@ class PhysicalLayer:
             self.devices.add(Host(name))
 
     def connect(self, time: int, device1: str, port1: int, device2: str, port2: int):
+        if device1 == device2:
+            print("\nCAN'T CONNECT A DEVICE WITH ITSELF.")
+            raise Exception
         d1 = None
         d2 = None
         for d in self.devices:
@@ -34,8 +37,8 @@ class PhysicalLayer:
                 if type(d) != Host:
                     print("\nWRONG SEND INSTRUCTION DEVICE TYPE.")
                     raise Exception
-                d.start_send(signal_time, time, data)
-                return d
+                new = d.start_send(signal_time, time, data)
+                return d if new else None
         print("\nUNRECOGNIZED DEVICE.")
         raise Exception
 

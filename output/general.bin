@@ -1,10 +1,25 @@
 time=0, instruction=create, device=hub, name=h, ports_number=4
 time=0, instruction=create, device=host, name=pc
-time=0, instruction=create, device=host, name=cp
-time=0, instruction=create, device=hub, name=i, ports_number=3
-time=0, instruction=connect, device_x=h, port_x=1, device_y=pc, port_y=1
-time=0, instruction=connect, device_x=i, port_x=2, device_y=cp, port_y=2
-time=0, instruction=send, host=pc, data=0101
-time=10, instruction=send, host=cp, data=0101
-time=20, instruction=connect, device_x=h, port_x=2, device_y=i, port_y=2
-time=60, instruction=disconnect, device=cp, port=1
+time=3, instruction=connect, device_x=h, port_x=1, device_y=pc, port_y=1
+time=6, instruction=send, host=pc, data=0101010111001100
+time=10, instruction=create, device=host, name=cp
+time=23, instruction=connect, device_x=h, port_x=2, device_y=cp, port_y=2
+time=23, instruction=create, device=hub, name=i, ports_number=3
+time=27, instruction=connect, device_x=i, port_x=3, device_y=h, port_y=3
+time=56, instruction=disconnect, device=h, port=1
+time=80, instruction=connect, device_x=h, port_x=1, device_y=pc, port_y=1
+time=100, instruction=disconnect, device=pc, port=1
+time=126, instruction=connect, device_x=h, port_x=1, device_y=pc, port_y=1
+time=130, instruction=connect, device_x=pc, port_x=1, device_y=h, port_y=1
+time=140, instruction=disconnect, device=h, port=4
+time=148, instruction=connect, device_x=h, port_x=4, device_y=i, port_y=4
+time=149, instruction=disconnect, device=cp, port=1
+time=150, instruction=disconnect, device=i, port=3
+time=155, instruction=send, host=pc, data=0101010111001100
+time=165, instruction=send, host=cp, data=0101010111001100
+time=181, instruction=connect, device_x=i, port_x=1, device_y=cp, port_y=1
+time=250, instruction=connect, device_x=h, port_x=2, device_y=i, port_y=2
+time=300, instruction=connect, device_x=pc, port_x=1, device_y=cp, port_y=1
+time=344, instruction=connect, device_x=i, port_x=2, device_y=pc, port_y=2
+time=352, instruction=connect, device_x=h, port_x=3, device_y=cp, port_y=3
+time=368, instruction=connect, device_x=i, port_x=3, device_y=h, port_y=3

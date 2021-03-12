@@ -1,6 +1,5 @@
 from os import mkdir, listdir, remove, path
-from objects import Instruction
-from master import master
+from master import master, Instruction
 
 
 def main():
@@ -12,13 +11,15 @@ def main():
         print("\nSCRIPT WAS NOT FOUND.\n")
         return
     signal_time = 10
-    #try:
-    print("\nCONNECTION STARTED.\n")
-    master(signal_time, translator(script))
-    script.close()
-    print("\nCONNECTION ENDED.\n")
-    #except Exception:
-        #print("\nBAD FORMAT ERROR.\n")
+    try:  # Comment to debug
+        print("\nCONNECTION STARTED.")
+        print("(TIME = 0)\n")
+        time = master(signal_time, translator(script))
+        script.close()
+        print("\nCONNECTION ENDED.")
+        print("(TIME = {})\n".format(time))
+    except Exception:
+        print("\nBAD FORMAT ERROR.\n")
 
 
 def directory():

@@ -1,10 +1,98 @@
-time=10, port=1, send=0, transmission=successfully
+time=23, port=1, receive=1
 
-time=20, port=1, send=1, transmission=successfully
+time=26, port=1, receive=0
 
-time=30, port=1, send=0, transmission=successfully
+time=36, port=1, receive=1
 
-time=40, port=1, send=1, transmission=successfully
+time=46, port=1, receive=0
 
-time=50, port=1, send=null, cause=data_ended
+time=56, port=1, receive=1
+
+time=56, port=1, receive=null, cause=host_disconnected
+
+time=80, port=1, receive=0
+
+time=86, port=1, receive=0
+
+time=96, port=1, receive=1
+
+time=100, port=1, receive=null, cause=host_disconnected
+
+time=126, port=1, receive=1
+
+time=130, port=1, receive=null, cause=host_disconnected
+
+time=130, port=1, receive=1
+
+time=136, port=1, receive=1
+
+time=146, port=1, receive=1
+
+time=149, port=1, receive=null, cause=host_disconnected
+
+time=165, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=175, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=181, port=1, send=0, transmission=successfully
+
+time=185, port=1, send=0, transmission=successfully
+
+time=195, port=1, send=1, transmission=successfully
+
+time=205, port=1, send=0, transmission=successfully
+
+time=215, port=1, send=1, transmission=successfully
+
+time=225, port=1, send=0, transmission=successfully
+
+time=235, port=1, send=1, transmission=successfully
+
+time=245, port=1, send=0, transmission=successfully
+
+time=255, port=1, send=1, transmission=successfully
+
+time=265, port=1, send=1, transmission=successfully
+
+time=275, port=1, send=1, transmission=successfully
+
+time=285, port=1, send=0, transmission=successfully
+
+time=295, port=1, send=0, transmission=successfully
+
+time=300, port=1, send=0, transmission=collision
+
+time=305, port=1, send=0, transmission=collision
+
+time=306, port=1, receive=1
+
+time=315, port=1, send=0, transmission=collision
+
+time=316, port=1, receive=1
+
+time=325, port=1, send=0, transmission=collision
+
+time=326, port=1, receive=0
+
+time=335, port=1, send=0, transmission=collision
+
+time=336, port=1, receive=0
+
+time=344, port=1, receive=null, cause=host_disconnected
+
+time=345, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=352, port=1, send=0, transmission=successfully
+
+time=355, port=1, send=0, transmission=successfully
+
+time=365, port=1, send=1, transmission=successfully
+
+time=375, port=1, send=1, transmission=successfully
+
+time=385, port=1, send=0, transmission=successfully
+
+time=395, port=1, send=0, transmission=successfully
+
+time=405, port=1, send=null, cause=data_ended
 

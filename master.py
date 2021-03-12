@@ -1,5 +1,5 @@
+from instructions import PhysicalLayer, send, Instruction, create, connect, disconnect
 from objects import Data
-from actions import PhysicalLayer, Instruction, create, connect, send, disconnect
 
 
 def master(signal_time: int, instructions: list):
@@ -25,7 +25,7 @@ def master(signal_time: int, instructions: list):
                 j += 1
             i = j
         time += 1
-    return
+    return time
 
 
 def controller(signal_time: int, physical_layer: PhysicalLayer, time: int, instruction: Instruction,
@@ -33,18 +33,18 @@ def controller(signal_time: int, physical_layer: PhysicalLayer, time: int, instr
     if len(instruction.details) > 3:
         print("\nWRONG INSTRUCTION FORMAT.")
         raise Exception
-    if instruction.action == "create":
+    if instruction.command == "create":
         create(physical_layer, instruction)
-    elif instruction.action == "connect":
+    elif instruction.command == "connect":
         connect(physical_layer, instruction)
-    elif instruction.action == "send":
+    elif instruction.command == "send":
         send(signal_time, physical_layer, instruction, transmitting)
-    elif instruction.action == "disconnect":
-        disconnect(physical_layer, time, instruction, transmitting)
+    elif instruction.command == "disconnect":
+        disconnect(physical_layer, time, instruction)
     else:
         print("\nUNRECOGNIZED INSTRUCTION.")
         raise Exception
-    print("{} {}".format(instruction.time, instruction.action), end="")
+    print("{} {}".format(instruction.time, instruction.command), end="")
     for i in range(len(instruction.details)):
         print(" {}".format(instruction.details[i]), end="")
     print()

@@ -1,0 +1,50 @@
+main.py:
+	main: metodo principal que ejecuta todo el programa
+	directory: metodo que reinicia el directorio "output"
+	translator: metodo que genera las instrucciones a partir del texto de "script.txt"
+
+
+master.py:
+	master: metodo que ejecuta las instrucciones
+	controller: metodo que identifica la instruccion a ejecutar
+
+
+instructions.py:
+	create: metodo que genera los datos para crear un nuevo dispositivo
+	connect: metodo que genera los datos para interconectar dos puertos de dos dispositivos
+	send: metodo que genera los datos para que una computadora los envie
+	disconnect: metodo que genera los datos para desconectar un puerto de un dispositivo
+
+
+physical_layer.py:
+	PhysicalLayer: clase que abarca a toda la capa fisica y sus acciones
+		create: metodo que crea un nuevo dispositivo y lo agrega a la capa fisica
+		connect: metodo que interconecta dos puertos de dos dispositivos existentes en la capa fisica
+		send: metodo que le da datos a una computadora para que esta los envie
+		disconnect: metodo que desconecta un puerto de un dispositivo
+
+
+objects.py:
+	Instruction: clase que abarca a la estructura de una instruccion
+
+	Data (hereda de Enum): clase que responde a los estados de la informacion a transmitir
+
+	Cable: clase que abarca los cables que conectan a los dispositivos de la capa fisica
+		update: metodo que permite actualizar la conexion del cable
+
+	Device: clase que abarca a los dispositivos de la capa fisica
+		connect: metodo que conecta un puerto del dispositivo con otro puerto
+		collision: metodo que se ejecuta cuando ocurre una colision
+		disconnect: metodo que desconecta un puerto del dispositivo
+		write: metodo que actualiza el "device.txt" del dispositivo
+		receive_bit: metodo que se ejecuta cuando se recibe un bit
+		send_bit: metodo que envia un bit desde un puerto del dispositivo a otro puerto		
+
+
+devices.py:
+	Host (hereda de Device): clase que abarca a las computadoras
+		start_send: metodo que se ejecuta cuando la computadora recibe informacion que debe enviar
+		send: metodo que envia informacion desde la computadora hacia otros dispositivos
+
+	Hub (hereda de Device):
+		receiving: metodo que resuelve si el puerto que se revisa es por donde el concentrador recibe la informacion
