@@ -1,10 +1,25 @@
 0 create hub h 4
 0 create host pc
-0 create host cp
-0 create hub i 3
-0 connect h_1 pc_1
-0 connect i_2 cp_1
-0 send pc 0101
-10 send cp 0101
-20 connect h_2 i_1
-60 disconnect cp_1
+3 connect h_1 pc_1
+6 send pc 0101010111001100
+10 create host cp
+23 connect h_2 cp_1
+23 create hub i 3
+27 connect i_3 h_4
+56 disconnect h_1
+80 connect h_1 pc_1
+100 disconnect pc_1
+126 connect h_1 pc_1
+130 connect pc_1 h_3
+140 disconnect h_4
+148 connect h_4 i_3
+149 disconnect cp_1
+150 disconnect i_3
+155 send pc 0101010111001100
+165 send cp 0101010111001100
+181 connect i_1 cp_1
+250 connect h_2 i_2
+300 connect pc_1 cp_1
+344 connect i_2 pc_1
+352 connect h_3 cp_1
+368 connect i_3 h_1
