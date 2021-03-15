@@ -16,12 +16,12 @@ instructions.py:
 	disconnect: metodo que genera los datos para desconectar un puerto de un dispositivo
 
 
-physical_layer.py:
-	PhysicalLayer: clase que abarca a toda la capa fisica y sus acciones
-		create: metodo que crea un nuevo dispositivo y lo agrega a la capa fisica
-		connect: metodo que interconecta dos puertos de dos dispositivos existentes en la capa fisica
-		send: metodo que le da datos a una computadora para que esta los envie
-		disconnect: metodo que desconecta un puerto de un dispositivo
+layer.py:
+	Layer: clase que abarca a toda la capa fisica y sus acciones
+	       create: metodo que crea un nuevo dispositivo y lo agrega a la capa fisica
+	       connect: metodo que interconecta dos puertos de dos dispositivos existentes en la capa fisica
+	       send: metodo que le da datos a una computadora para que esta los envie
+	       disconnect: metodo que desconecta un puerto de un dispositivo
 
 
 objects.py:

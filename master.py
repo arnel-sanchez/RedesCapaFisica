@@ -1,4 +1,4 @@
-from instructions import PhysicalLayer, send, Instruction, create, connect, disconnect
+from instructions import Layer, send, Instruction, create, connect, disconnect
 from objects import Data
 
 
@@ -7,7 +7,7 @@ def master(signal_time: int, instructions: list):
     time = 0
     transmitting = []
     ended = []
-    physical_layer = PhysicalLayer()
+    physical_layer = Layer()
     while i < len(instructions) or len(transmitting) > 0:
         for t in transmitting:
             data = t.send(signal_time, time)
@@ -28,7 +28,7 @@ def master(signal_time: int, instructions: list):
     return time
 
 
-def controller(signal_time: int, physical_layer: PhysicalLayer, time: int, instruction: Instruction,
+def controller(signal_time: int, physical_layer: Layer, time: int, instruction: Instruction,
                transmitting: list):
     if len(instruction.details) > 3:
         print("\nWRONG INSTRUCTION FORMAT.")

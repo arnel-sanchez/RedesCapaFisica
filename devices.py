@@ -7,6 +7,7 @@ class Host(Device):
         self.transmitting_started = -1
         self.data = []
         self.data_pointer = 0
+        self.resend_attempts = 0
 
     def disconnect(self, time: int, port: int):
         device = self.ports[port].device
@@ -14,6 +15,7 @@ class Host(Device):
             return
         device.receive_bit(time, port, Data.NULL, True)
         super().disconnect(time, port)
+        self.data_pointer = 0  # Comment if the the host must not restart sending data in case of disconnection
 
     def receive_bit(self, time: int, port: int, data: Data, disconnected: bool = False):
         super().receive_bit(time, port, data, disconnected)
@@ -22,8 +24,16 @@ class Host(Device):
     def collision(self, device, string: str):
         super().collision(device, string)
         self.data_pointer -= 1  # Comment if the the host must not wait to resend data in case of collision
+        self.resend_attempts += 1
+        if self.resend_attempts == 20:
+            self.reset()
         if type(device) == Host and device.transmitting_started <= self.transmitting_started:
             self.ports[0].data = Data.NULL
+
+    def reset(self):
+        self.transmitting_started = -1
+        self.data = []
+        self.data_pointer = 0
 
     def start_send(self, signal_time: int, time: int, data: list):
         count = len(self.data)
@@ -47,35 +57,40 @@ class Host(Device):
             self.data_pointer += 1
         else:
             data = Data.NULL
-            self.transmitting_started = -1
-            self.data = []
-            self.data_pointer = 0
+            self.reset()
         self.send_bit(time, data, disconnected)
         if self.ports[0].device is None:
-            self.data_pointer -= 1
-            # Comment after the "or" if the the host must not wait to resend data in case of disconnection
+            self.data_pointer -= 1  # Comment if the the host must not wait to resend data in case of disconnection
+            self.resend_attempts += 1
+            if self.resend_attempts == 20:
+                self.reset()
+        else:
+            self.resend_attempts = 0
         return data if not disconnected else data.ZERO
 
 
 class Hub(Device):
     def __init__(self, name: str, no_ports: int):
         super().__init__(name, no_ports)
-        self.receiving_port = None
+        self.receiving_from = None
 
     def disconnect(self, time: int, port: int):
-        if self.receiving_port == port and type(self.ports[port].device) == Hub:
+        device = self.ports[port].device
+        if self.receiving_from == device and type(device) == Hub:
             self.receive_bit(time, port, Data.NULL, True)
         super().disconnect(time, port)
 
     def receive_bit(self, time: int, port: int, data: Data, disconnected: bool = False):
-        super().receive_bit(time, port, data, disconnected)
+        for p in range(self.ports_number):
+            if self.receiving_from == self.ports[p].device:
+                super().receive_bit(time, p, data, disconnected)
         if disconnected:
             self.write("\n")
-        self.receiving_port = port
+        self.receiving_from = self.ports[port].device
         self.send_bit(time, data, disconnected)
 
     def receiving(self, port: int):
-        return self.receiving_port == port
+        return self.receiving_from == self.ports[port].device
 
     def sending(self):
         return "resend="

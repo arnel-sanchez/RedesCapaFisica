@@ -22,4 +22,6 @@
 300 connect pc_1 cp_1
 344 connect i_2 pc_1
 352 connect h_3 cp_1
-368 connect i_3 h_1
+368 connect i_2 h_1
+400 connect i_1 h_2
+480 disconnect pc_1

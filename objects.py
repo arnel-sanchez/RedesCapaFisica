@@ -107,7 +107,7 @@ class Device:
                 else:
                     string = "{}{}, transmission=".format(string, 1 if data == data.ONE else 0)
                     new_line = True
-                    if device.ports[port].data != Data.NULL:
+                    if device.ports[port].data != Data.NULL and not device.receiving(port):
                         self.collision(device, string)
                         continue
                     self.write("{}successfully\n".format(string))

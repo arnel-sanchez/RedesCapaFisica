@@ -1,8 +1,8 @@
-from physical_layer import PhysicalLayer
+from layer import Layer
 from objects import Instruction
 
 
-def create(physical_layer: PhysicalLayer, instruction: Instruction):
+def create(physical_layer: Layer, instruction: Instruction):
     device = instruction.details[0]
     name = instruction.details[1]
     if device == "hub":
@@ -26,7 +26,7 @@ def create(physical_layer: PhysicalLayer, instruction: Instruction):
     file.close()
 
 
-def connect(physical_layer: PhysicalLayer, instruction: Instruction):
+def connect(physical_layer: Layer, instruction: Instruction):
     if len(instruction.details) > 2:
         print("\nWRONG CONNECT INSTRUCTION FORMAT.")
         raise Exception
@@ -39,7 +39,7 @@ def connect(physical_layer: PhysicalLayer, instruction: Instruction):
     file.close()
 
 
-def send(signal_time: int, physical_layer: PhysicalLayer, instruction: Instruction, transmitting: list):
+def send(signal_time: int, physical_layer: Layer, instruction: Instruction, transmitting: list):
     if len(instruction.details) > 2:
         print("\nWRONG SEND INSTRUCTION FORMAT.")
         raise Exception
@@ -58,7 +58,7 @@ def send(signal_time: int, physical_layer: PhysicalLayer, instruction: Instructi
     file.close()
 
 
-def disconnect(physical_layer: PhysicalLayer, time: int, instruction: Instruction):
+def disconnect(physical_layer: Layer, time: int, instruction: Instruction):
     if len(instruction.details) > 1:
         print("\nWRONG DISCONNECT INSTRUCTION FORMAT.")
         raise Exception
