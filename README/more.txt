@@ -1,2 +1,0 @@
-*Implementar que si detecta una colision a cualquier dispositivo enviado entonces esperar???
-	-En ese caso, explotaria en caso de una autoconexion de un concentrador
