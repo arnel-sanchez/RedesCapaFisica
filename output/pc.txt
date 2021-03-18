@@ -30,9 +30,9 @@ time=126, port=1, send=0, transmission=successfully
 
 time=130, port=1, send=0, transmission=successfully
 
-time=136, port=1, send=0, transmission=collision
+time=136, port=1, send=0, transmission=successfully
 
-time=146, port=1, send=0, transmission=collision
+time=146, port=1, send=1, transmission=successfully
 
 time=156, port=1, send=0, transmission=successfully
 
@@ -46,21 +46,21 @@ time=196, port=1, send=0, transmission=successfully
 
 time=206, port=1, send=1, transmission=successfully
 
-time=216, port=1, send=0, transmission=successfully
+time=216, port=1, send=1, transmission=successfully
 
 time=226, port=1, send=1, transmission=successfully
 
-time=236, port=1, send=1, transmission=successfully
+time=236, port=1, send=0, transmission=successfully
 
-time=246, port=1, send=1, transmission=successfully
+time=246, port=1, send=0, transmission=successfully
 
-time=256, port=1, send=0, transmission=successfully
+time=256, port=1, send=1, transmission=successfully
 
-time=266, port=1, send=0, transmission=successfully
+time=266, port=1, send=1, transmission=successfully
 
-time=276, port=1, send=1, transmission=successfully
+time=276, port=1, send=0, transmission=successfully
 
-time=286, port=1, send=1, transmission=successfully
+time=286, port=1, send=0, transmission=successfully
 
 time=296, port=1, send=0, transmission=successfully
 
@@ -68,15 +68,15 @@ time=300, port=1, send=0, transmission=collision
 
 time=306, port=1, send=0, transmission=successfully
 
-time=316, port=1, send=0, transmission=successfully
+time=316, port=1, send=1, transmission=successfully
 
-time=326, port=1, send=1, transmission=successfully
+time=326, port=1, send=0, transmission=successfully
 
-time=336, port=1, send=0, transmission=successfully
+time=336, port=1, send=1, transmission=successfully
 
 time=344, port=1, receive=null, cause=host_disconnected
 
-time=344, port=1, send=0, transmission=successfully
+time=344, port=1, send=1, transmission=successfully
 
 time=346, port=1, send=0, transmission=successfully
 
@@ -84,15 +84,15 @@ time=356, port=1, send=1, transmission=successfully
 
 time=366, port=1, send=0, transmission=successfully
 
-time=376, port=1, send=0, transmission=incomplete, cause=not_connected
+time=376, port=1, send=1, transmission=successfully
 
-time=386, port=1, send=0, transmission=incomplete, cause=not_connected
+time=386, port=1, send=0, transmission=successfully
 
-time=396, port=1, send=0, transmission=incomplete, cause=not_connected
+time=396, port=1, send=1, transmission=successfully
 
-time=406, port=1, send=0, transmission=incomplete, cause=not_connected
+time=406, port=1, send=0, transmission=successfully
 
-time=416, port=1, send=0, transmission=incomplete, cause=not_connected
+time=416, port=1, send=1, transmission=successfully
 
 time=426, port=1, send=0, transmission=incomplete, cause=not_connected
 
@@ -123,4 +123,14 @@ time=546, port=1, send=0, transmission=incomplete, cause=not_connected
 time=556, port=1, send=0, transmission=incomplete, cause=not_connected
 
 time=566, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=576, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=586, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=596, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=606, port=1, send=0, transmission=incomplete, cause=not_connected
+
+time=616, port=1, send=0, transmission=incomplete, cause=not_connected
 

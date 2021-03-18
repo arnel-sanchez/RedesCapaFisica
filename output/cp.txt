@@ -24,7 +24,11 @@ time=130, port=1, receive=null, cause=host_disconnected
 
 time=130, port=1, receive=0
 
-time=149, port=1, receive=null, cause=host_disconnected
+time=136, port=1, receive=0
+
+time=146, port=1, receive=1
+
+time=149, port=2, receive=null, cause=host_disconnected
 
 time=165, port=1, send=0, transmission=incomplete, cause=not_connected
 
@@ -64,15 +68,15 @@ time=306, port=1, receive=0
 
 time=315, port=1, send=0, transmission=collision
 
-time=316, port=1, receive=0
+time=316, port=1, receive=1
 
 time=325, port=1, send=0, transmission=collision
 
-time=326, port=1, receive=1
+time=326, port=1, receive=0
 
 time=335, port=1, send=0, transmission=collision
 
-time=336, port=1, receive=0
+time=336, port=1, receive=1
 
 time=344, port=1, receive=null, cause=host_disconnected
 

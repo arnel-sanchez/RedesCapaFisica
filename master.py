@@ -7,7 +7,7 @@ def master(signal_time: int, instructions: list):
     time = 0
     transmitting = []
     ended = []
-    physical_layer = Layer()
+    layer = Layer()
     while i < len(instructions) or len(transmitting) > 0:
         for t in transmitting:
             data = t.send(signal_time, time)
@@ -21,26 +21,26 @@ def master(signal_time: int, instructions: list):
                 time = instructions[i].time
             j = i
             while j < len(instructions) and instructions[j].time == time:
-                controller(signal_time, physical_layer, time, instructions[j], transmitting)
+                controller(signal_time, layer, time, instructions[j], transmitting)
                 j += 1
             i = j
         time += 1
     return time
 
 
-def controller(signal_time: int, physical_layer: Layer, time: int, instruction: Instruction,
+def controller(signal_time: int, layer: Layer, time: int, instruction: Instruction,
                transmitting: list):
     if len(instruction.details) > 3:
         print("\nWRONG INSTRUCTION FORMAT.")
         raise Exception
     if instruction.command == "create":
-        create(physical_layer, instruction)
+        create(layer, instruction)
     elif instruction.command == "connect":
-        connect(physical_layer, instruction)
+        connect(layer, instruction)
     elif instruction.command == "send":
-        send(signal_time, physical_layer, instruction, transmitting)
+        send(signal_time, layer, instruction, transmitting)
     elif instruction.command == "disconnect":
-        disconnect(physical_layer, time, instruction)
+        disconnect(layer, time, instruction)
     else:
         print("\nUNRECOGNIZED INSTRUCTION.")
         raise Exception

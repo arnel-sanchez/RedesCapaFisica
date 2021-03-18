@@ -10,10 +10,14 @@ class Host(Device):
         self.resend_attempts = 0
 
     def disconnect(self, time: int, port: int):
-        device = self.ports[port].device
+        cable = self.ports[port]
+        device = cable.device
         if device is None:
             return
-        device.receive_bit(time, port, Data.NULL, True)
+        if len(self.data) > 0:
+            device.receive_bit(time, cable.port, Data.NULL, True)
+        if type(device) == Hub and device.ports[cable.port].data != Data.NULL:
+            self.receive_bit(time, cable.port, Data.NULL, True)
         super().disconnect(time, port)
         self.data_pointer = 0  # Comment if the the host must not restart sending data in case of disconnection
 
@@ -23,7 +27,8 @@ class Host(Device):
 
     def collision(self, device, string: str):
         super().collision(device, string)
-        self.data_pointer -= 1  # Comment if the the host must not wait to resend data in case of collision
+        if self.data_pointer > 0:
+            self.data_pointer -= 1  # Comment if the the host must not wait to resend data in case of collision
         self.resend_attempts += 1
         if self.resend_attempts == 20:
             self.reset()
@@ -34,6 +39,7 @@ class Host(Device):
         self.transmitting_started = -1
         self.data = []
         self.data_pointer = 0
+        self.resend_attempts = 0
 
     def start_send(self, signal_time: int, time: int, data: list):
         count = len(self.data)
@@ -72,25 +78,29 @@ class Host(Device):
 class Hub(Device):
     def __init__(self, name: str, no_ports: int):
         super().__init__(name, no_ports)
-        self.receiving_from = None
+        self.receiving_port = -1
 
     def disconnect(self, time: int, port: int):
-        device = self.ports[port].device
-        if self.receiving_from == device and type(device) == Hub:
+        if self.receiving_port == port and type(self.ports[port].device) == Hub:
             self.receive_bit(time, port, Data.NULL, True)
         super().disconnect(time, port)
 
     def receive_bit(self, time: int, port: int, data: Data, disconnected: bool = False):
+        if data == Data.NULL and self.transmitting_data == data.NULL:
+            return
+        self.receiving_port = port
+        new_line = False
         for p in range(self.ports_number):
-            if self.receiving_from == self.ports[p].device:
+            if self.receiving_port == p and (data != Data.NULL or self.transmitting_data != data.NULL):
                 super().receive_bit(time, p, data, disconnected)
-        if disconnected:
+                new_line = True
+                break
+        if disconnected and new_line:
             self.write("\n")
-        self.receiving_from = self.ports[port].device
         self.send_bit(time, data, disconnected)
 
     def receiving(self, port: int):
-        return self.receiving_from == self.ports[port].device
+        return self.receiving_port == port
 
     def sending(self):
         return "resend="

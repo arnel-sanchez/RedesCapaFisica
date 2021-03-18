@@ -82,11 +82,13 @@ class Device:
         self.transmitting_data = data
         new_line = False
         for p in range(self.ports_number):
+            if not self.receiving(p):
+                self.ports[p].data = data
+        for p in range(self.ports_number):
             if self.receiving(p):
                 continue
             string = "time={}, port={}, {}".format(time, p + 1, self.sending())
             cable = self.ports[p]
-            cable.data = data
             device = cable.device
             if device is None:
                 if not disconnected:

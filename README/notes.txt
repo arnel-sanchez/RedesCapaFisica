@@ -1,14 +1,15 @@
 *En caso de colision o desconexion, la computadora puede esperar para reenviar la informacion o enviarla aunque esta se pierda.
-	-El primer caso es el que se encuentra por defecto. Es por ello que si una computadora desconectada debe enviar informacion, el programa nunca terminara.
-	-Para el segundo caso, es necesario comentar en "devices.py" las lineas 24, 54 y 55 (señaladas en el codigo con comentarios).
+	-El primer caso es el que se encuentra por defecto, con 20 intentos de reenvio a lo sumo.
+	-Para el segundo caso, es necesario comentar en "devices.py" las lineas 22, 31 y 69 (señaladas en el codigo con comentarios).
 
 *Se detecta la colision solo si es con el dispositivo mas cercano.
 	-Si la colision es entre dos concentradores, se asume que la informacion de la computadora llego a algun dispositivo y no se perdio totalmente.
 	
 *Puede ocurrir (durante un envio):
-	-Conexion de un nuevo dispositivo: este empieza a recibir la informacion a partir del momento en que se conecto.
-	-Desconexion de un dispositivo: si es la computadora origen del envio, esta debe decidir que hacer mientras esta desconectada (visto anteriormente); si es otro dispositivo, deja de recibir la informacion a partir del momento en que se desconecto.
+	-Conexion de un nuevo dispositivo: este comienza a recibir la informacion a partir del momento en que se conecto.
+	-Desconexion de un dispositivo: si es la computadora origen del envio, esta debe decidir que hacer mientras esta desconectada (visto anteriormente);
+	                                si es otro dispositivo, deja de recibir la informacion a partir del momento en que se desconecto.
 	-Reconexion de un dispositivo con otro, ya sea este la computadora origen del envio o no.
-	-Conexion de dos dispositivos que se encuentran enviando a la misma vez.
+	-Conexion de dos dispositivos que se encuentran enviando a la misma vez: se genera una colision.
 
 *No es posible conectar un dispositivo consigo mismo.
