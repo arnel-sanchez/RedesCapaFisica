@@ -21,14 +21,14 @@ def master(signal_time: int, instructions: list):
                 time = instructions[i].time
             j = i
             while j < len(instructions) and instructions[j].time == time:
-                controller(signal_time, layer, time, instructions[j], transmitting)
+                controller(signal_time, layer, instructions[j], transmitting)
                 j += 1
             i = j
         time += 1
     return time
 
 
-def controller(signal_time: int, layer: Layer, time: int, instruction: Instruction,
+def controller(signal_time: int, layer: Layer, instruction: Instruction,
                transmitting: list):
     if len(instruction.details) > 3:
         print("\nWRONG INSTRUCTION FORMAT.")
@@ -40,7 +40,7 @@ def controller(signal_time: int, layer: Layer, time: int, instruction: Instructi
     elif instruction.command == "send":
         send(signal_time, layer, instruction, transmitting)
     elif instruction.command == "disconnect":
-        disconnect(layer, time, instruction)
+        disconnect(layer, instruction)
     else:
         print("\nUNRECOGNIZED INSTRUCTION.")
         raise Exception

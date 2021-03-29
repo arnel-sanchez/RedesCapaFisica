@@ -1,4 +1,4 @@
-from devices import Hub, Host
+from host import Hub, Host
 
 
 class Layer:
