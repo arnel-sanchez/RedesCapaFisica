@@ -32,6 +32,8 @@ objects.py:
 	Cable: clase que abarca los cables que conectan a los dispositivos de la capa fisica
 		update: metodo que permite actualizar la conexion del cable
 
+
+device.py:
 	Device: clase que abarca a los dispositivos de la capa fisica
 		connect: metodo que conecta un puerto del dispositivo con otro puerto
 		collision: metodo que se ejecuta cuando ocurre una colision
@@ -41,10 +43,12 @@ objects.py:
 		send_bit: metodo que envia un bit desde un puerto del dispositivo a otro puerto		
 
 
-devices.py:
+hub.py:
+	Hub (hereda de Device):
+		receiving: metodo que resuelve si el puerto que se revisa es por donde el concentrador recibe la informacion
+
+
+host.py:
 	Host (hereda de Device): clase que abarca a las computadoras
 		start_send: metodo que se ejecuta cuando la computadora recibe informacion que debe enviar
 		send: metodo que envia informacion desde la computadora hacia otros dispositivos
-
-	Hub (hereda de Device):
-		receiving: metodo que resuelve si el puerto que se revisa es por donde el concentrador recibe la informacion

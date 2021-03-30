@@ -1,6 +1,6 @@
 *En caso de colision o desconexion, la computadora puede esperar para reenviar la informacion o enviarla aunque esta se pierda.
 	-El primer caso es el que se encuentra por defecto, con 20 intentos de reenvio a lo sumo.
-	-Para el segundo caso, es necesario comentar en "devices.py" las lineas 22, 31 y 69 (señaladas en el codigo con comentarios).
+	-Para el segundo caso, es necesario comentar en "host.py" las lineas 22, 31 y 69 (señaladas en el codigo con comentarios).
 
 *Se detecta la colision solo si es con el dispositivo mas cercano.
 	-Si la colision es entre dos concentradores, se asume que la informacion de la computadora llego a algun dispositivo y no se perdio totalmente.

@@ -31,7 +31,7 @@ class Layer:
         d1.connect(time, port1, d2, port2)
         d2.connect(time, port2, d1, port1)
 
-    def send(self, signal_time: int, time: int, host: str, data):
+    def send(self, signal_time: int, time: int, host: str, data: list):
         for d in self.devices:
             if d.name == host:
                 if type(d) != Host:
