@@ -60,21 +60,21 @@ time=285, port=1, send=0, transmission=successfully
 
 time=295, port=1, send=0, transmission=successfully
 
-time=300, port=1, send=0, transmission=collision
+time=300, port=1, send=0, transmission==incomplete, cause=collision
 
-time=305, port=1, send=0, transmission=collision
+time=305, port=1, send=0, transmission==incomplete, cause=collision
 
 time=306, port=1, receive=0
 
-time=315, port=1, send=0, transmission=collision
+time=315, port=1, send=0, transmission==incomplete, cause=collision
 
 time=316, port=1, receive=1
 
-time=325, port=1, send=0, transmission=collision
+time=325, port=1, send=0, transmission==incomplete, cause=collision
 
 time=326, port=1, receive=0
 
-time=335, port=1, send=0, transmission=collision
+time=335, port=1, send=0, transmission==incomplete, cause=collision
 
 time=336, port=1, receive=1
 
@@ -116,5 +116,5 @@ time=495, port=1, send=0, transmission=successfully
 
 time=505, port=1, send=0, transmission=successfully
 
-time=515, port=1, send=null, cause=data_ended
+time=515, port=1, send=null, cause=data_ended, transmission=successfully
 

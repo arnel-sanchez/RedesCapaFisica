@@ -6,11 +6,29 @@ def main():
     if not directory():
         return
     try:
-        script = open("script.txt", 'r')
+        script = open("input/script.txt", 'r')
     except OSError:
         print("\nSCRIPT WAS NOT FOUND.\n")
         return
     signal_time = 10
+    try:
+        config = open("input/config.txt", 'r')
+    except OSError:
+        print("\nCONFIG WAS NOT FOUND.\n")
+    else:
+        try:
+            while True:
+                line = config.readline().replace(' ', '')
+                if len(line) < 1:
+                    break
+                line = line.split('=')
+                if line[0] == "signal_time":
+                    signal_time = int(line[1])
+                else:
+                    raise Exception
+        except Exception:
+            print("\nCONFIG FORMAT ERROR.\n")
+            signal_time = 10
     try:  # Comment to debug
         print("\nCONNECTION STARTED.")
         print("(TIME = 0)\n")

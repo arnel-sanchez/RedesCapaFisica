@@ -19,7 +19,7 @@ class Device:
         data = cable.data
         if data != Data.NULL:
             string = "time={}, port={}, send={}, transmission=".format(time, port + 1, 1 if data == data.ONE else 0)
-            if other_device.transmitting_data != Data.NULL:
+            if other_device.transmitting():
                 self.collision(other_device, string)
                 self.write("\n")
             else:
@@ -39,8 +39,11 @@ class Device:
                 device.disconnect(time, p)
                 return
 
+    def transmitting(self):
+        return self.transmitting_data != Data.NULL
+
     def collision(self, device, string: str):
-        self.write("{}collision\n".format(string))
+        self.write("{}=incomplete, cause=collision\n".format(string))
 
     def write(self, string: str):
         file = open("output/{}.txt".format(self.name), 'a')
@@ -78,17 +81,15 @@ class Device:
                 port = cable.port
                 if data == data.NULL:
                     if not disconnected:
-                        self.write("{}null, cause=data_ended\n".format(string))
                         new_line = True
-                    if device.ports[port].data != Data.NULL:
+                        if self.transmission(port, device, "{}null, cause=data_ended".format(string)):
+                            continue
+                    if device.receiving_from(port):
                         continue
                 else:
-                    string = "{}{}, transmission=".format(string, 1 if data == data.ONE else 0)
                     new_line = True
-                    if device.ports[port].data != Data.NULL and not device.receiving(port):
-                        self.collision(device, string)
+                    if self.transmission(port, device, "{}{}".format(string, 1 if data == data.ONE else 0)):
                         continue
-                    self.write("{}successfully\n".format(string))
                 device.receive_bit(time, port, data, disconnected)
         if new_line:
             self.write("\n")
@@ -98,3 +99,17 @@ class Device:
 
     def sending(self):
         return "send="
+
+    def receiving_from(self, port: int):
+        return self.ports[port].data != Data.NULL
+
+    def transmission(self, port, device, string):
+        string = "{}, transmission=".format(string)
+        if device.sending_collision(port):
+            self.collision(device, string)
+            return True
+        self.write("{}successfully\n".format(string))
+        return False
+
+    def sending_collision(self, port):
+        return self.receiving_from(port) and not self.receiving(port)

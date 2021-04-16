@@ -64,7 +64,7 @@ time=286, port=1, send=0, transmission=successfully
 
 time=296, port=1, send=0, transmission=successfully
 
-time=300, port=1, send=0, transmission=collision
+time=300, port=1, send=0, transmission==incomplete, cause=collision
 
 time=306, port=1, send=0, transmission=successfully
 
