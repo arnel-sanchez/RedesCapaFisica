@@ -2,12 +2,18 @@ from hub import Device, Data
 
 
 class Host(Device):
-    def __init__(self, name: str):
+    def __init__(self, signal_time: int, name: str):
         super().__init__(name, 1)
+        self.signal_time = signal_time
         self.transmitting_started = -1
         self.data = []
         self.data_pointer = [0, 0]
         self.resend_attempts = 0
+
+    def connect(self, time: int, port: int, other_device, other_port: int):
+        super().connect(time, port, other_device, other_port)
+        if self.ports[0].data != Data.NULL:
+            self.data_pointer[1] += 1
 
     def disconnect(self, time: int, port: int):
         cable = self.ports[port]
@@ -23,8 +29,8 @@ class Host(Device):
 
     def collision(self, device, string: str):
         super().collision(device, string)
-        if self.data_pointer[1] > 0:  # Comment if the the host must not wait to resend data in case of collision
-            self.data_pointer[1] -= 1
+        if self.data_pointer[1] > 0:
+            self.data_pointer[1] -= 1  # Comment if the the host must not wait to resend data in case of collision
         self.resend_attempts += 1
         if self.resend_attempts == 20:
             self.reset()
@@ -42,18 +48,18 @@ class Host(Device):
         super().receive_bit(time, port, data, disconnected)
         self.write("\n")
 
-    def start_send(self, signal_time: int, time: int, data: list):
+    def start_send(self, time: int, data: list):
         self.data.append(data)
         if len(self.data) == 1:
             self.transmitting_started = time
-            self.send(signal_time, time)
+            self.send(time)
             return True
         return False
 
-    def send(self, signal_time: int, time: int, disconnected: bool = False):
+    def send(self, time: int, disconnected: bool = False):
         if self.transmitting_started == -1:
             return Data.NULL
-        if (time - self.transmitting_started) % signal_time != 0:
+        if (time - self.transmitting_started) % self.signal_time != 0:
             return Data.ZERO
         if disconnected:
             data = Data.NULL
@@ -76,7 +82,7 @@ class Host(Device):
         if self.ports[0].device is None:
             self.data_pointer[1] -= 1  # Comment if the the host must not wait to resend data in case of disconnection
             self.resend_attempts += 1
-            if self.resend_attempts == 20:
+            if self.resend_attempts == 10:
                 self.reset()
         else:
             self.resend_attempts = 0

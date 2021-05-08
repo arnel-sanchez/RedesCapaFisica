@@ -41,7 +41,7 @@ def connect(layer: Layer, instruction: Instruction):
                                                                                                port2[0], port1[1]))
 
 
-def send(signal_time: int, layer: Layer, instruction: Instruction, transmitting: list):
+def send(layer: Layer, instruction: Instruction, transmitting: list):
     if len(instruction.details) > 2:
         print("\nWRONG SEND INSTRUCTION FORMAT.")
         raise Exception
@@ -52,7 +52,7 @@ def send(signal_time: int, layer: Layer, instruction: Instruction, transmitting:
         if data[i] != 0 and data[i] != 1:
             print("\nUNRECOGNIZED DATA TYPE.")
             raise Exception
-    device = layer.send(signal_time, instruction.time, host, data)
+    device = layer.send(instruction.time, host, data)
     if device is not None:
         transmitting.append(device)
     write(instruction.time, "send, host={}, data={}\n".format(host, details))

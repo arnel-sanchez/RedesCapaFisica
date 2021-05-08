@@ -3,14 +3,15 @@ from host import Host
 
 
 class Layer:
-    def __init__(self):
+    def __init__(self, signal_time: int):
+        self.signal_time = signal_time
         self.devices = set()
 
     def create(self, device: str, name: str, ports_number: int = 1):
         if device == "hub":
             self.devices.add(Hub(name, ports_number))
         elif device == "host":
-            self.devices.add(Host(name))
+            self.devices.add(Host(self.signal_time, name))
 
     def connect(self, time: int, device1: str, port1: int, device2: str, port2: int):
         if device1 == device2:
@@ -32,13 +33,16 @@ class Layer:
         d1.connect(time, port1, d2, port2)
         d2.connect(time, port2, d1, port1)
 
-    def send(self, signal_time: int, time: int, host: str, data: list):
+    def send(self, time: int, host: str, data: list):
         for d in self.devices:
             if d.name == host:
                 if type(d) != Host:
                     print("\nWRONG SEND INSTRUCTION DEVICE TYPE.")
                     raise Exception
-                new = d.start_send(signal_time, time, data)
+                if len(data) % 8 != 0:
+                    print("\nDATA ISN'T A MULTIPLE OF 8.")
+                    raise Exception
+                new = d.start_send(time, data)
                 return d if new else None
         print("\nUNRECOGNIZED DEVICE.")
         raise Exception

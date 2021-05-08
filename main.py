@@ -18,13 +18,14 @@ def main():
     else:
         try:
             while True:
-                line = config.readline().replace(' ', '')
+                line = config.readline().replace(' ', '').replace('\n', '')
                 if len(line) < 1:
                     break
                 line = line.split('=')
                 if line[0] == "signal_time":
                     signal_time = int(line[1])
                 else:
+                    print("WRONG CONFIG INSTRUCTION.")
                     raise Exception
         except Exception:
             print("\nCONFIG FORMAT ERROR.\n")
